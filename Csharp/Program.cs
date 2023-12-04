@@ -42,20 +42,20 @@ public class Program
         var a5 = stack.Pop();
         Console.WriteLine(a5.Name + "   " + a5.Price);
         Console.WriteLine("Items left in the stack");
+        Console.WriteLine("\\\\\\\\\\");
 
 
 
 
 
-
-        WordsandMeaning words1 = new WordsandMeaning() { Words = "Noun", Meaning = "a naming word. E.g Abuja,Cat, Tade,Freedom" };
-        WordsandMeaning words2 = new WordsandMeaning() { Words = "Verb", Meaning = "an action words.E.g eat, finish, drink, believes,dance" };
-        WordsandMeaning words3 = new WordsandMeaning() { Words = "Pronoun", Meaning = "words use instead of a noun. E.g She, He, Himself, Herself, It, We" };
-        WordsandMeaning words4 = new WordsandMeaning() { Words = "Adverb", Meaning = "a word that modifies a verb, adjectives or other adverbs.E.g softly,lazily, only, often, sometimes" };
-        WordsandMeaning words5 = new WordsandMeaning() { Words = "Conjunction", Meaning = "a  word that joins other words or phrases together into sentences.E.g and,or,nor,neither" };
-        WordsandMeaning words6 = new WordsandMeaning() { Words = "Preposition", Meaning = "shows the relationship between noun and pronoun and the other words in a sentence. E.g by, against, for, apart,out of" };
-        WordsandMeaning words7 = new WordsandMeaning() { Words = "Adjectives", Meaning = "describes noun or pronoun , e.g hot,lazy,beautiful" };
-        WordsandMeaning words8 = new WordsandMeaning() { Words = "Interjection", Meaning = "are expressions that can stand on thier own or be contained within a sentence.E.g ah!, ouch!, whoops!" };
+        WordsandMeaning words1 = new WordsandMeaning() { Words = "Noun", Meaning = "a naming word. E.g Abuja,Cat, Tade,Freedom." };
+        WordsandMeaning words2 = new WordsandMeaning() { Words = "Verb", Meaning = "an action words.E.g eat, finish, drink, believes,dance." };
+        WordsandMeaning words3 = new WordsandMeaning() { Words = "Pronoun", Meaning = "words use instead of a noun. E.g She, He, Himself, Herself, It, We." };
+        WordsandMeaning words4 = new WordsandMeaning() { Words = "Adverb", Meaning = "a word that modifies a verb, adjectives or other adverbs.E.g softly,lazily, only, often, sometimes." };
+        WordsandMeaning words5 = new WordsandMeaning() { Words = "Conjunction", Meaning = "a  word that joins other words or phrases together into sentences.E.g and,or,nor,neither." };
+        WordsandMeaning words6 = new WordsandMeaning() { Words = "Preposition", Meaning = "shows the relationship between noun and pronoun and the other words in a sentence. E.g by, against, for, apart,out of." };
+        WordsandMeaning words7 = new WordsandMeaning() { Words = "Adjectives", Meaning = "describes noun or pronoun , e.g hot,lazy,beautiful." };
+        WordsandMeaning words8 = new WordsandMeaning() { Words = "Interjection", Meaning = "are expressions that can stand on thier own or be contained within a sentence.E.g ah!, ouch!, whoops!." };
 
         Stack<WordsandMeaning> words = new Stack<WordsandMeaning>();
         words.Push(words1);
@@ -67,6 +67,7 @@ public class Program
         words.Push(words7);
         words.Push(words8);
 
+        
         var b1 = words.Pop();
         Console.WriteLine(b1.Words + "   " + b1.Meaning);
         Console.WriteLine("Items left in the stack");
@@ -99,8 +100,51 @@ public class Program
         Console.WriteLine(b8.Words + "   " + b8.Meaning);
         Console.WriteLine("Items left in the stack");
 
+        Console.WriteLine("\\\\\\");
 
-    }
+        //Queue: firstinfirstout
+        Queue<WordsandMeaning> wordmean = new Queue<WordsandMeaning>();
+        wordmean.Enqueue(words1);
+        wordmean.Enqueue(words2);
+        wordmean.Enqueue(words3);
+        wordmean.Enqueue(words4);
+        wordmean.Enqueue(words5);
+        wordmean.Enqueue(words6);
+        wordmean.Enqueue(words7);
+        wordmean.Enqueue(words8);
+
+        var c1 = wordmean.Dequeue();
+        Console.WriteLine(c1.Words + "   " + c1.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c2 = wordmean.Dequeue();
+        Console.WriteLine(c2.Words + "   " + c2.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c3 = wordmean.Dequeue();
+        Console.WriteLine(c3.Words + "   " + c3.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c4 = wordmean.Dequeue();
+        Console.WriteLine(c4.Words + "   " + c4.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c5 = wordmean.Dequeue();
+        Console.WriteLine(c5.Words + "   " + c5.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c6 = wordmean.Dequeue();
+        Console.WriteLine(c6.Words + "   " + c6.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c7 = wordmean.Dequeue();
+        Console.WriteLine(c7.Words + "   " + c7.Meaning);
+        Console.WriteLine("Items left in the queue");
+
+        var c8 = wordmean.Dequeue();
+        Console.WriteLine(c8.Words + "   " + c8.Meaning);
+        Console.WriteLine("Items left in the queue");
+
 
     }
 }
