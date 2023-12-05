@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Csharp
 {
-    public delegate bool Partyparty(Party party);
     public class Party
     {
         public int Id { get; set; }
@@ -14,5 +13,10 @@ namespace Csharp
         public string Description { get; set; }
         public int Price { get; set; }
         
+    public static void Classpaty()
+        {
+            Console.WriteLine("I am having a class party");
+        }
+
     }
 }
