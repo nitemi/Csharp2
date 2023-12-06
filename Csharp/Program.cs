@@ -2,6 +2,7 @@
 using Csharp;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Reflection.PortableExecutable;
 
 public class Program
@@ -18,89 +19,91 @@ public class Program
     // right join ------- right outer join
     //full join
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="args"></param>
+
+    //Ordering
     private static void Main(string[] args)
     {
-        //left join or left outer join:
-        //With LEFT OUTER JOIN all the matching elements +all the non-matching elements
-        //from the left collection are included in the result set.
-        var info3 = Vendors.GetAllVendors()//left side
-            .GroupJoin(Planners.GetAllPlanners(),//right side
-            vend => vend.Id,
-            plan => plan.EmailId,
-            (vend, plan) => new { vend, plan }).SelectMany(
-            t => t.plan.DefaultIfEmpty(),
-            (a, b) => new
-            {
-                VendorsName = a.vend.Name,
-                PlannersName = b == null ? "Vendors not disclosed" : b.Name
-            }
-            );
+        //Ordering
+        //orderby
+        //orderbydescending
+        //thenby
+        //thenbydecending
+        //var vend = Vendors.GetAllVendors()
+        //            .OrderBy(v => v.Id)
+        //            .ThenBy(v => v.Name)
+        //            .ToList();
 
-        foreach (var data in info3)
+        //foreach (var v in vend)
+        //{
+        //    Console.WriteLine("Name:" + v.Name + "|||||||||||" + "Id:" + v.Id);
+        //}
+
+        //Grouping
+        //groupby
+        //query syntax
+        var info = (from vn in Vendors.GetAllVendors()
+                    group vn by vn.Id);
+
+        //method syntax
+        var info1 = Vendors.GetAllVendors().GroupBy(v => v.Id);
+
+        foreach ( var data in info)
         {
-            Console.WriteLine($"VendorsName : {data.VendorsName}, PlannersName : {data.PlannersName}");
+            Console.WriteLine(data.Key + ":" + data.Count());
+            foreach ( var v in data)
+            {
+                Console.WriteLine("Name:" + v.Name);
+            }
+        }
+        
+
+        //set operator
+        //Distinct
+        //Except
+        //Intersect
+        //union
+        Console.WriteLine("------------");
+        var datainfo = new List<string> { "ade", "femi", "ife","beloved","femi", "williams", "uchechi" };
+        var datainfo1 = new List<string> { "gift","ade", "femi","beloved", "emmanuel", "adeyemi", "euchaura" };
+
+        //method syntax
+        var record = datainfo.Distinct().ToList();
+
+        //query syntax
+        var record1 = (from nil in datainfo select nil).Distinct();
+            foreach ( var v in record)
+        {
+            Console.WriteLine(v);
         }
         Console.WriteLine("---------");
 
-        left join in query syntax
-            var info4 = from plan in Planners.GetAllPlanners()
-                        join vend in Vendors.GetAllVendors()
-                        on plan.EmailId equals vend.Id
-                        into Planvend
-                        from vend2 in Planvend.DefaultIfEmpty()
-                        select new
-                        {
-                            plan.Name,
-                            VendName = vend2.Name == null ? "Vendors not disclosed" : vend2.Name
+        //Except
+        //method syntax
+        var record2 = datainfo.Except(datainfo1).ToList();
+            foreach ( var v1 in record2)
+        {
+            Console.WriteLine(v1);
+        }
+        Console.WriteLine("--------");
 
-                        };
-        foreach (var data in info4)
-                            {
-                               Console.WriteLine($"VendorsName : {data.VendName}, PlannersName : {data.Name}");
-                            }
-                            //innerJoin :In LINQ, an inner join is used to serve a result
-                            //which contains only those elements from the first data source
-                            //that appears only one time in the second data source.
-                            //And if an element of the first data source does not have matching elements,
-                            //then it will not appear in the result data set.
-                            //extensionmethod
+        //intersect
+        //method syntax
+        var record3 = datainfo1.Intersect(datainfo).ToList();
+        foreach (var v2 in record3)
+        {
+            Console.WriteLine(v2);
+        }
+        Console.WriteLine("-------");
 
-            //        var info = Eventinfo.GetAllEventinfo()//outer sequence
-            //            .Join(Planners.GetAllPlanners(),//inner sequence
-            //            even => even.Id,//outerKeySelector
-            //            plan => plan.EmailId,//innerKeySelector
-            //            (even, plan) => new //result selector
-            //            {
-            //                PlannerId = plan.EmailId,
-            //                EventName = even.Name,
-            //                VendorDescription = even.Description
-
-            //            }).ToList();
-
-            //        foreach (var data in info)
-            //        {
-            //            Console.WriteLine($"Id : {data.PlannerId}, Name : {data.EventName}, Description : {data.VendorDescription}");
-            //        }
-            //        Console.WriteLine("------------");
-            //        //join in query syntax
-
-            //        var info2 = (from vend in Vendors.GetAllVendors()//outer sequence
-            //                     join plan in Planners.GetAllPlanners() //inner sequence
-            //                     on vend.Id equals plan.EmailId//key selector
-            //                     select new
-            //                     {//result selector
-            //                         PlannerId = plan.EmailId,
-            //                         VendorName = vend.Name,
-            //                         VendorDescription = vend.Description
-            //                     }).ToList();
-            //        foreach (var data in info2)
-            //        {
-            //            Console.WriteLine($"Id : {data.PlannerId}, Name : {data.VendorName}, Description : {data.VendorDescription}");
-            //        }
+        //union
+        //method syntax
+        var record4 = datainfo.Union(datainfo1).ToList();
+        foreach ( var v3 in record4)
+        {
+            Console.WriteLine(v3);
+        }
+            Console.ReadKey();     
+        
 
     }
 }

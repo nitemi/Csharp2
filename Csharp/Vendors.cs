@@ -22,11 +22,11 @@ namespace AdvancedCsharp
                 new Vendors { Id = 3, Name = "Blue Ribbon", Description = "Venue Vendor" },
                 new Vendors { Id = 4, Name = "Precious cakes", Description = "Cake Vendor" },
                 new Vendors { Id = 5, Name = "B&G Catering Services", Description = "Food Vendor" },
-                new Vendors { Id = 6, Name = "MC Kay & Crew", Description = "Entertainment Vendor" },
-                new Vendors { Id = 7, Name = "Swift cars", Description = "Logistics Vendor" },
-                new Vendors { Id = 8, Name = "The Podium Event Centre", Description = "Venue Vendor" },
-                new Vendors { Id = 9, Name = "TK Traditional Attire", Description = "Traditional Cloth Vendor" },
-                new Vendors { Id = 10, Name = "Ashake Corporate Ushers", Description = "Ushers Vendor" }
+                new Vendors { Id = 1, Name = "MC Kay & Crew", Description = "Entertainment Vendor" },
+                new Vendors { Id = 5, Name = "Swift cars", Description = "Logistics Vendor" },
+                new Vendors { Id = 4, Name = "The Podium Event Centre", Description = "Venue Vendor" },
+                new Vendors { Id = 2, Name = "TK Traditional Attire", Description = "Traditional Cloth Vendor" },
+                new Vendors { Id = 2, Name = "Ashake Corporate Ushers", Description = "Ushers Vendor" }
             };
         }
     }
