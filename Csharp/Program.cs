@@ -1,71 +1,106 @@
-﻿using Csharp;
-using System.Collections;
-using System.Diagnostics;
+﻿using AdvancedCsharp;
+using Csharp;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 
 public class Program
 {
+    //joining
+    //Grouping
+    //Ordering
+
+    //Join:In LINQ, Join operators are used for integrating two data source into one data source
+    //which shares some common attributes
+    // inner join ---- outer join:With INNER JOIN only the matching elements are included in
+    // the result set. Non-matching elements are excluded from the result set.
+    // left join --------- left outer join
+    // right join ------- right outer join
+    //full join
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="args"></param>
     private static void Main(string[] args)
     {
-        //linq : Language integrated query
-        //query syntax or query expression
-        //method syntax or method extension syntax or fluent syntax
-        //filtering has to do with where, pluss and offtype(use to select different typr of datatype)
-        //projection: select and select many
+        //left join or left outer join:
+        //With LEFT OUTER JOIN all the matching elements +all the non-matching elements
+        //from the left collection are included in the result set.
+        var info3 = Vendors.GetAllVendors()//left side
+            .GroupJoin(Planners.GetAllPlanners(),//right side
+            vend => vend.Id,
+            plan => plan.EmailId,
+            (vend, plan) => new { vend, plan }).SelectMany(
+            t => t.plan.DefaultIfEmpty(),
+            (a, b) => new
+            {
+                VendorsName = a.vend.Name,
+                PlannersName = b == null ? "Vendors not disclosed" : b.Name
+            }
+            );
 
-
-        IList<Eventinfo> list = new List<Eventinfo>()
+        foreach (var data in info3)
         {
-            new Eventinfo() {id = 1, name = "Birthdays", description = "Mini birthday event"},
-            new Eventinfo() {id = 2, name = "Weddings", description = "Mini and Classic wedding event"},
-            new Eventinfo() {id = 3, name = "Corporate Events", description = "Mini Corporate event"},
-            new Eventinfo() {id = 4, name = "Anniversary", description = "Classical event"},
-            new Eventinfo() {id = 5, name = "House Warming", description = "Mini event"},
-        };
-        //query
-        var minievent = from d in list
-                        where d.id > 2
-                        select d;
-
-        //method syntax 
-        var minievent2 = list.Where(d => d.id > 2);
-       
-
-        foreach (var eventinfo in minievent2.ToList())
-        {
-            Console.WriteLine(eventinfo.name + " ---------- " + eventinfo.description);
+            Console.WriteLine($"VendorsName : {data.VendorsName}, PlannersName : {data.PlannersName}");
         }
-        Console.WriteLine("--------------");
-        
-        IList values = new ArrayList();
-        values.Add(0);
-        values.Add("Bridal Shower");
-        values.Add("Naming");
-        values.Add(6);
-        values.Add(7);
+        Console.WriteLine("---------");
 
-        var result = from d in values.OfType<string>()
-                           select d;
+        left join in query syntax
+            var info4 = from plan in Planners.GetAllPlanners()
+                        join vend in Vendors.GetAllVendors()
+                        on plan.EmailId equals vend.Id
+                        into Planvend
+                        from vend2 in Planvend.DefaultIfEmpty()
+                        select new
+                        {
+                            plan.Name,
+                            VendName = vend2.Name == null ? "Vendors not disclosed" : vend2.Name
 
-        foreach (var info in result.ToList())
-        {
-            Console.WriteLine(info);
-        }
-        Console.WriteLine("!!!!!!!!!!!!!");
-        var report = from d in values.OfType<int>()
-                     select d;
+                        };
+        foreach (var data in info4)
+                            {
+                               Console.WriteLine($"VendorsName : {data.VendName}, PlannersName : {data.Name}");
+                            }
+                            //innerJoin :In LINQ, an inner join is used to serve a result
+                            //which contains only those elements from the first data source
+                            //that appears only one time in the second data source.
+                            //And if an element of the first data source does not have matching elements,
+                            //then it will not appear in the result data set.
+                            //extensionmethod
 
-        foreach (var resp in report.ToList())
-        {
-            Console.WriteLine(resp);
-        }
-        List<string> words = new List<string>() { "Noun", "Pronoun","Interjection", "Adjectives","Preposition", "Verb","Conjunction", "Adverb" };
-        var result1 = words.SelectMany(w => w.ToList());//use when returning a very large list
-        foreach(var word in result1)
-        {
-            Console.WriteLine(word);
-        }
+            //        var info = Eventinfo.GetAllEventinfo()//outer sequence
+            //            .Join(Planners.GetAllPlanners(),//inner sequence
+            //            even => even.Id,//outerKeySelector
+            //            plan => plan.EmailId,//innerKeySelector
+            //            (even, plan) => new //result selector
+            //            {
+            //                PlannerId = plan.EmailId,
+            //                EventName = even.Name,
+            //                VendorDescription = even.Description
+
+            //            }).ToList();
+
+            //        foreach (var data in info)
+            //        {
+            //            Console.WriteLine($"Id : {data.PlannerId}, Name : {data.EventName}, Description : {data.VendorDescription}");
+            //        }
+            //        Console.WriteLine("------------");
+            //        //join in query syntax
+
+            //        var info2 = (from vend in Vendors.GetAllVendors()//outer sequence
+            //                     join plan in Planners.GetAllPlanners() //inner sequence
+            //                     on vend.Id equals plan.EmailId//key selector
+            //                     select new
+            //                     {//result selector
+            //                         PlannerId = plan.EmailId,
+            //                         VendorName = vend.Name,
+            //                         VendorDescription = vend.Description
+            //                     }).ToList();
+            //        foreach (var data in info2)
+            //        {
+            //            Console.WriteLine($"Id : {data.PlannerId}, Name : {data.VendorName}, Description : {data.VendorDescription}");
+            //        }
+
     }
 }
-
-        
