@@ -35,7 +35,7 @@ public class Program
 
         //foreach (var v in vend)
         //{
-        //    Console.WriteLine("Name:" + v.Name + "|||||||||||" + "Id:" + v.Id);
+        //    Console.WriteLine("Name:" + v.Name + "\t" + "Id:" + v.Id);
         //}
 
         //Grouping
@@ -84,7 +84,7 @@ public class Program
         {
             Console.WriteLine(v1);
         }
-        Console.WriteLine("--------");
+        Console.WriteLine("***********");
 
         //intersect
         //method syntax
@@ -93,7 +93,7 @@ public class Program
         {
             Console.WriteLine(v2);
         }
-        Console.WriteLine("-------");
+        Console.WriteLine("**********");
 
         //union
         //method syntax
