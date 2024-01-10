@@ -8,65 +8,77 @@ using System.Security;
 
 public class Program
 {
-    //Element operators
-    //Aggregate
-    //Quantifier
+    //Task
+    //Thread
+    //Async
 
     //Ordering
     private static void Main(string[] args)
     {
 
-        //Quantifiers
-        //Any
-        //All
-        //Contain
+        digitalClock();
+    //    digitalResult();
+       Console.Read();
+    }
+    //static void digitalResult()
+    //{
+    //    Task.Run(() =>
+    //    {
+    //        Digital();
+    //    });
+    //    Task.Run(() =>
+    //    {
+    //        Digital1();
+    //    });
+    //    Task.Run(() =>
+    //    {
+    //        Digital2();
+    //    });
+    //    Task.Run(() =>
+    //    {
+    //        Digital3();
+    //    });
+    //}
+    //static int Digital()
+    //{
 
-        string[] names = { "Gina", "Adnan", "Daniel", "John", "Abdu" };
+    //    Console.WriteLine("Engaging Result 1.......");
+    //    return 100;
 
-        var name = names.Any(num => num.Length > 4);
-        Console.WriteLine(name);
+    //}
+    //static int Digital1()
+    //{
+    //    Thread.Sleep(5000);
+    //    Console.WriteLine("Engaging Result 2.......");
+    //    return 200;
 
-        var name2 = names.All(num => num.Length > 6 );
-        Console.WriteLine(name2);
+    //}
+    //static int Digital2()
+    //{
+    //    Console.WriteLine("Engaging Result 3.......");
+    //    return 300;
 
-        var name3 = names.Contains("Adnan");
-        Console.WriteLine(name3);
-        //Element Operators
-        //ElmentAt
+    //}
+    //static int Digital3()
+    //{
+    //    Console.WriteLine("Engaging Result 4.......");
+    //    return 400;
 
-        //List<int> names = new List<int>() { 11, 34, 6, 9, 23, 4 };
-        //List<int> name = new List<int>() { };
+    //}
+    //static async Task Dat()//asyn method
+    //{
+    //    Console.WriteLine(digitalResult);
+    //}
+    public async static void digitalClock()
+    {
+        Console.WriteLine("Digital Clock ticks");
+        await wait();
+        Console.WriteLine("Digital clock stops ticking");
 
-        //var elements = names.ElementAt(3);
-        //var elementts = name.ElementAtOrDefault(6);
-        //Console.WriteLine(elements);
-
-//        //First
-//        //Firstordefault
-//        var first = names.First();
-//        var firsts = name.FirstOrDefault();
-//        Console.WriteLine(first);
-
-//        //last
-//        //lastordefault
-//        var last = names.Last();
-//        var lasts = name.LastOrDefault();
-//        Console.WriteLine(last);
-
-//        //Single if the result is more than 1, it will throw an error
-//        //singleordefault if the result is more than 1, it will return zero
-//        var single = names.Single(name => name < 6);
-//        var singles = name.SingleOrDefault(name => name > 6);
-//        Console.WriteLine(singles);
-
-//        //defaultifempty use for fetchng list, to avoid throwing an error if empty
-
-//        var defaults = names.DefaultIfEmpty();
-//        var defaultts = name.DefaultIfEmpty();
-//        foreach (var element in defaults)
-//        {
-//            Console.WriteLine(element);
-//        }
-
-   }
+    }
+    public async static Task wait()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(10));
+        Console.WriteLine("Ticks completed");
+    }
 }
