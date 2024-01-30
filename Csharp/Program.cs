@@ -46,7 +46,7 @@ public class Program
         }
         Console.WriteLine("---------");
 
-        left join in query syntax
+        //left join in query syntax
             var info4 = from plan in Planners.GetAllPlanners()
                         join vend in Vendors.GetAllVendors()
                         on plan.EmailId equals vend.Id
