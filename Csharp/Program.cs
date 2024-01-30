@@ -74,6 +74,6 @@ public class Program
         //var word = File.ReadAllText(direct);
         var word = File.GetCreationTime(direct);
         Console.WriteLine(word);
-        Console.Read();
+       
     }
 }
